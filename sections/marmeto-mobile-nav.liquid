@@ -1,0 +1,138 @@
+{{ 'marmeto-mobile-nav.css' |  asset_url |  stylesheet_tag }}
+<script src="{{ 'marmeto-mobile-nav.js'  |  asset_url}}" async></script>
+
+<nav class="marmeto-nav">
+    {% for block in section.blocks %}
+    <a href="{{ block.settings.select_redirection }}" class="marmeto-nav-item{% if forloop.first %} is-active{% endif %}">
+        <i class="bx bx-heart">
+            {{ block.settings.svg }}
+        </i>
+        <span>{{ block.settings.navigation_name }}</span>
+    </a>
+    {% endfor %}
+    <div class="marmeto-nav-indicator-wrapper">
+        <span class="marmeto-nav-indicator"></span>
+    </div>
+</nav>
+
+
+
+<style>
+   
+.marmeto-nav--sticky {
+    position: {{ section.settings.sticky }};
+    top: 0px;
+    z-index: 999;
+    margin-top: {{ section.settings.margin-top }};
+    margin-bottom: {{ section.settings.margin-bottom }};
+}   
+.marmeto-nav {
+	background-color: {{ section.settings.select_background }} ;
+	border-radius: {{ section.settings.border-radius }};
+}
+
+.marmeto-nav-indicator {
+	background-color: {{ section.settings.select_background_indicator }};
+}
+</style>
+
+{% schema %}
+    {
+      "name": "Mobile Bottom Navigation",
+      "tag": "section",
+      "class": "marmeto-nav--sticky",
+      "settings": [
+        {
+          "type": "color",
+          "label": "Select Background",
+          "id": "select_background",
+          "default":"#1d1a1d",
+          "info": "Select the Background color for Nav"
+        },
+        {
+          "type": "color",
+          "label": "Select Indicator color",
+          "id": "select_background_indicator",
+          "default":"#6ba7a8",
+          "info": "Select the Background color for Nav"
+        },
+        {
+          "type": "radio",
+          "label": "Sticky",
+          "id": "sticky",
+          "options": [
+            {
+              "label": "Sticky",
+              "value": "sticky"
+            },
+            {
+              "label": "Scrollable",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "label": "Border Radius",
+          "id": "border-radius",
+          "min":0,
+          "max":30,
+          "step": 2,
+          "default":0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "label": "Margin Top",
+          "id": "margin-top",
+          "min":0,
+          "max":100,
+          "step": 10,
+          "default":0,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "label": "Margin Bottom",
+          "id": "margin-bottom",
+          "min":0,
+          "max":100,
+          "step": 10,
+          "default":0,
+          "unit": "px"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "nav_item",
+          "name": "Nav Item",
+          "limit": 4,
+          "settings": [
+            {
+              "type": "url",
+              "label": "Select Redirection",
+              "id": "select_redirection",
+              "info": "Select for redirection"
+            },
+            {
+            "type": "html",
+            "label": "svg",
+            "id": "svg",
+            "info": "Paste the SVG here 30*30px or below"
+            },
+            {
+              "type": "text",
+              "label": "Navigation Name",
+              "id": "navigation_name",
+              "placeholder": "Icon 1"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Mobile Bottom Navigation"
+        }
+      ]
+    }
+{% endschema %}

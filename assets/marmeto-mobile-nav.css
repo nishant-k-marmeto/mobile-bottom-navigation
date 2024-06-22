@@ -1,0 +1,63 @@
+.marmeto-nav {
+	position: relative;
+	width:  -webkit-fill-available;;
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	border: 1px solid #252325;
+	overflow: hidden;
+}
+.marmeto-nav-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	width: 50px;
+	margin: 0 5px;
+	padding: 20px;
+	color: rgba(255, 255, 255, 0.2);
+	text-decoration: none;
+	transition: .3s;
+}
+
+.marmeto-nav-item.is-active {
+	color: #6ba7a8;
+}
+
+.marmeto-nav-item.is-active::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 120%;
+	height: 120%;
+	transform: translate(-10%, -10%);
+	background: radial-gradient(#6ba7a8, transparent);
+	filter: blur(10px);
+	opacity: .2;
+}
+
+.marmeto-nav-item i {
+	font-size: 24px;
+}
+
+.marmeto-nav-item span {
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.marmeto-nav-indicator-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+	display: flex;
+	justify-content: center;
+}
+.marmeto-nav-indicator {
+	width: 30px;
+	height: 5px;
+	border-radius: 8px;
+}
